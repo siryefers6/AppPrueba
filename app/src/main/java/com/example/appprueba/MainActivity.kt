@@ -47,9 +47,8 @@ class MainActivity : ComponentActivity() {
 
 
 // Preview es una vista previa de nuestro composable
-@Composable
-
 // MiPrimerComposable es un composable que nos permite mostrar un texto
+@Composable
 fun MiPrimerComposable() {
 
     // Column es un contenedor que nos permite tener elementos en una columna
@@ -83,6 +82,7 @@ fun MiPrimerComposable() {
 
 
 // MiSegundoComposable es un composable que nos permite mostrar un texto
+@Composable
 fun MiSegundoComposable() {
 
     // Box es un contenedor que nos permite tener elementos en una caja

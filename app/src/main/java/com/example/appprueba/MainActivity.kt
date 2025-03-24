@@ -19,6 +19,9 @@ import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.width
+import androidx.compose.foundation.layout.Box
+import androidx.compose.ui.Alignment
+
 
 // MainActivity es la clase principal de nuestra aplicación
 class MainActivity : ComponentActivity() {
@@ -35,8 +38,9 @@ class MainActivity : ComponentActivity() {
         // setContent es el método que nos permite definir el contenido de la aplicación
         setContent {
 
-            // Modifier es un objeto que nos permite definir las propiedades de un componente
-            MiPrimerComposable()
+            //MiPrimerComposable()
+            MiSegundoComposable()
+
         }
     }
 }
@@ -48,7 +52,7 @@ class MainActivity : ComponentActivity() {
 // MiPrimerComposable es un composable que nos permite mostrar un texto
 fun MiPrimerComposable() {
 
-    // Scaffold es un contenedor que nos permite tener un AppBar y un Body
+    // Column es un contenedor que nos permite tener elementos en una columna
     Column(modifier = Modifier.fillMaxSize().padding(top=35.dp)) {
 
         // Row es un contenedor que nos permite tener elementos en una fila
@@ -76,3 +80,26 @@ fun MiPrimerComposable() {
 
     }
 }
+
+
+// MiSegundoComposable es un composable que nos permite mostrar un texto
+fun MiSegundoComposable() {
+
+    // Box es un contenedor que nos permite tener elementos en una caja
+    Box(modifier = Modifier.fillMaxSize().padding(20.dp)) {
+
+        // Texto que se alinea en la parte superior izquierda
+        Text(text = "Hola arriba izquierda", modifier = Modifier.align(Alignment.TopStart))
+
+        // Texto que se alinea en el centro
+        Text(text = "Hola centrado", modifier = Modifier.align(Alignment.Center))
+
+        // Texto que se alinea en la parte inferior derecha
+        Text(text = "Hola abajo derecha", modifier = Modifier.align(Alignment.BottomEnd))
+
+    }
+
+}
+
+
+

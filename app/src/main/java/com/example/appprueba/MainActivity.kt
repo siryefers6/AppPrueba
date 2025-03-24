@@ -21,6 +21,11 @@ import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.layout.Box
 import androidx.compose.ui.Alignment
+import androidx.compose.foundation.Image
+import androidx.compose.ui.res.painterResource
+import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.text.style.TextAlign
+import androidx.compose.ui.unit.sp
 
 
 // MainActivity es la clase principal de nuestra aplicación
@@ -88,14 +93,19 @@ fun MiSegundoComposable() {
     // Box es un contenedor que nos permite tener elementos en una caja
     Box(modifier = Modifier.fillMaxSize().padding(20.dp)) {
 
-        // Texto que se alinea en la parte superior izquierda
-        Text(text = "Hola arriba izquierda", modifier = Modifier.align(Alignment.TopStart))
+        Image(
+            painter = painterResource(id = R.drawable.hammer),
+            contentDescription = "Hammer",
+            modifier = Modifier.align(Alignment.Center).fillMaxSize()
+        )
 
-        // Texto que se alinea en el centro
-        Text(text = "Hola centrado", modifier = Modifier.align(Alignment.Center))
-
-        // Texto que se alinea en la parte inferior derecha
-        Text(text = "Hola abajo derecha", modifier = Modifier.align(Alignment.BottomEnd))
+        Text(
+            text="Hammer Moster Hunter",
+            fontSize = 24.sp,
+            color=Color.Yellow,
+            textAlign = TextAlign.Center,
+            modifier = Modifier.align(Alignment.Center)
+        )
 
     }
 

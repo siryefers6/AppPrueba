@@ -18,19 +18,17 @@ OS:            Linux 5.15.167.4-microsoft-standard-WSL2 amd64
 # Variables de .bashrc
 
 ```bash
-#THIS MUST BE AT THE END OF THE FILE FOR SDKMAN TO WORK!!!
-export SDKMAN_DIR="$HOME/.sdkman"
-[[ -s "$HOME/.sdkman/bin/sdkman-init.sh" ]] && source "$HOME/.sdkman/bin/sdkman-init.sh"
-
-export NVM_DIR="$HOME/.nvm"
-[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
-[ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
-
 # Configuración del SDK de Android
 export ANDROID_HOME="$HOME/android_sdk"
 export PATH="$ANDROID_HOME/cmdline-tools/latest/bin:$ANDROID_HOME/emulator:$ANDROID_HOME/platform-tools:$PATH"
+
+# Configuración de Java JDK 17.0
 export JAVA_HOME="/usr/lib/jvm/java-1.17.0-openjdk-amd64"
 export PATH="$JAVA_HOME/bin:$PATH"
+
+# Configuración de SDKMAN
+export SDKMAN_DIR="$HOME/.sdkman"
+source "$SDKMAN_DIR/bin/sdkman-init.sh"
 ```
 
 
@@ -43,12 +41,18 @@ export PATH="$JAVA_HOME/bin:$PATH"
 5. Configurar las variables de entorno
 
 
-# Instalar Java JDK 17.0 Gradle 8.13 y Kotlin 2.0.21 con SDKMAN
+# Instalar Java JDK 17.0
+
+```bashrc
+sudo apt update
+sudo apt install openjdk-17-jdk
+```
+
+
+# Instalar Gradle 8.13 y Kotlin 2.0.21 con SDKMAN
 
 ```bashrc
 curl -s "https://get.sdkman.io" | bashrc
-source "$HOME/.sdkman/bin/sdkman-init.sh"
-sdk install java 17.0.0-open
 sdk install gradle 8.13
 sdk install kotlin 2.0.21
 ```
@@ -58,14 +62,7 @@ sdk install kotlin 2.0.21
 
 1. Descargar el SDK de Android desde la página oficial de android
 2. Descomprimir el archivo en la carpeta `~/android_sdk`
-3. Configurar las variables de entorno en el archivo `.bashrc`
-
-```bash
-export ANDROID_HOME="$HOME/android_sdk"
-export PATH="$ANDROID_HOME/cmdline-tools/latest/bin:$ANDROID_HOME/emulator:$ANDROID_HOME/platform-tools:$PATH"
-export JAVA_HOME="/usr/lib/jvm/java-1.17.0-openjdk-amd64"
-export PATH="$JAVA_HOME/bin:$PATH"
-```
+3. Crear directorios `cmdline-tools/latest` y mover el contenido de la carpeta `cmdline-tools` a `cmdline-tools/latest`
 
 
 # Comandos útiles para programar en kotlin
@@ -79,4 +76,7 @@ adb install -r app/build/outputs/apk/debug/app-debug.apk
 
 # Ejecutar aplicación en un dispositivo
 adb shell am start -n com.example.myapp/com.example.myapp.MainActivity
+
+# Mover la aplicación creada a ~/apks
+mv app/build/outputs/apk/debug/app-debug.apk ~/apks
 ```

@@ -13,35 +13,40 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
 import com.example.appprueba.ui.theme.AppPruebaTheme
 
+import androidx.compose.foundation.layout.Column
+import androidx.compose.ui.unit.dp
+import androidx.compose.foundation.layout.Row
+import androidx.compose.foundation.layout.Spacer
+import androidx.compose.foundation.layout.height
+import androidx.compose.foundation.layout.width
+
+
 class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         enableEdgeToEdge()
         setContent {
-            AppPruebaTheme {
-                Scaffold(modifier = Modifier.fillMaxSize()) { innerPadding ->
-                    Greeting(
-                        name = "Android",
-                        modifier = Modifier.padding(innerPadding)
-                    )
-                }
-            }
+            MiPrimerComposable()
         }
     }
 }
 
 @Composable
-fun Greeting(name: String, modifier: Modifier = Modifier) {
-    Text(
-        text = "Hello $name!",
-        modifier = modifier
-    )
-}
+fun MiPrimerComposable() {
 
-@Preview(showBackground = true)
-@Composable
-fun GreetingPreview() {
-    AppPruebaTheme {
-        Greeting("Android")
+    Column(modifier = Modifier.fillMaxSize().padding(top=35.dp)) {
+
+        Row {
+
+            Text(text="Texto fila 1")
+            Spacer(modifier = Modifier.width(35.dp))
+            Text(text="Texto fila 1B")
+
+        }
+
+        Spacer(modifier = Modifier.height(35.dp))
+        Text(text="Hola alumnos de kotlin")
+        Text(text="Este es nuestro primer compostable")
+
     }
 }

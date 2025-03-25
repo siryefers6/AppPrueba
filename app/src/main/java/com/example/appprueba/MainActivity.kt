@@ -93,12 +93,14 @@ fun MiSegundoComposable() {
     // Box es un contenedor que nos permite tener elementos en una caja
     Box(modifier = Modifier.fillMaxSize().padding(20.dp)) {
 
+        // Image es un componente que nos permite mostrar una imagen
         Image(
-            painter = painterResource(id = R.drawable.hammer),
+            painter = painterResource(id = R.drawable.hammer), // painterResource nos permite cargar una imagen
             contentDescription = "Hammer",
-            modifier = Modifier.align(Alignment.Center).fillMaxSize()
+            modifier = Modifier.align(Alignment.Center).fillMaxSize() // fillMaxSize nos permite ocupar todo el espacio disponible
         )
 
+        // Text es un componente que nos permite mostrar texto
         Text(
             text="Hammer Moster Hunter",
             fontSize = 24.sp,

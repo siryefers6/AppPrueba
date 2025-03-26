@@ -1,18 +1,14 @@
 package com.example.appprueba
-
 import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.activity.enableEdgeToEdge
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.padding
-import androidx.compose.material3.Scaffold
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
-import com.example.appprueba.ui.theme.AppPruebaTheme
-
 import androidx.compose.foundation.layout.Column
 import androidx.compose.ui.unit.dp
 import androidx.compose.foundation.layout.Row
@@ -22,6 +18,12 @@ import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.layout.Box
 import androidx.compose.ui.Alignment
 import androidx.compose.foundation.Image
+import androidx.compose.foundation.background
+import androidx.compose.material3.Button
+import androidx.compose.runtime.getValue
+import androidx.compose.runtime.mutableStateOf
+import androidx.compose.runtime.remember
+import androidx.compose.runtime.setValue
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.text.style.TextAlign
@@ -87,11 +89,15 @@ fun MiPrimerComposable() {
 
 
 // MiSegundoComposable es un composable que nos permite mostrar un texto
+@Preview
 @Composable
 fun MiSegundoComposable() {
 
+    // Declaramos el color de fondo de la interfaz
+    var colorFondo by remember { mutableStateOf( Color.White )}
+
     // Box es un contenedor que nos permite tener elementos en una caja
-    Box(modifier = Modifier.fillMaxSize().padding(20.dp)) {
+    Box(modifier = Modifier.fillMaxSize().padding(35.dp).background(colorFondo)) {
 
         // Image es un componente que nos permite mostrar una imagen
         Image(
@@ -109,9 +115,31 @@ fun MiSegundoComposable() {
             modifier = Modifier.align(Alignment.Center)
         )
 
+        // Botón en la parte superior izquierda
+        Button(
+            // Para color aleatorio rgb
+            // onClick = { colorFondo = colorAleatorio() },
+            // Para color aleatorio hexadecimal
+            onClick = { colorFondo = Color(colorAleatorio()) },
+            modifier = Modifier.align(Alignment.TopStart)
+        ) {
+            Text(text="Fondo")
+        }
+
     }
 
 }
 
+// Función para cambiar colores con rgb
+/*fun colorAleatorio(): Color {
+    val rojo = (0..255).random()
+    val verde = (0..255).random()
+    val azul = (0..255).random()
 
+    return Color(red=rojo, green=verde, blue=azul)
+}*/
 
+// Función para cambiar colores con hexadecimal
+fun colorAleatorio(): Long {
+    return (0xFFFFFF..0xFFFFFFFF).random()
+}

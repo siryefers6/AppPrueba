@@ -19,14 +19,19 @@ import androidx.compose.foundation.layout.Box
 import androidx.compose.ui.Alignment
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
+import androidx.compose.foundation.gestures.detectDragGestures
+import androidx.compose.foundation.layout.offset
 import androidx.compose.material3.Button
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
+import androidx.compose.ui.geometry.Offset
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.input.pointer.pointerInput
 import androidx.compose.ui.text.style.TextAlign
+import androidx.compose.ui.unit.IntOffset
 import androidx.compose.ui.unit.sp
 
 
@@ -96,6 +101,8 @@ fun MiSegundoComposable() {
     // Declaramos el color de fondo de la interfaz
     var colorFondo by remember { mutableStateOf( Color.White )}
 
+    var posicionTexto by remember { mutableStateOf(Offset(0f,0f))}
+
     // Box es un contenedor que nos permite tener elementos en una caja
     Box(modifier = Modifier.fillMaxSize().padding(35.dp).background(colorFondo)) {
 
@@ -112,7 +119,17 @@ fun MiSegundoComposable() {
             fontSize = 24.sp,
             color=Color.Yellow,
             textAlign = TextAlign.Center,
-            modifier = Modifier.align(Alignment.Center)
+            // modifier = Modifier.align(Alignment.Center)
+            modifier = Modifier
+                .offset{
+                    IntOffset(posicionTexto.x.toInt(), posicionTexto.y.toInt())
+                }
+                .pointerInput(Unit) {
+                    detectDragGestures { change, dragAmount ->
+                        change.consume()
+                        posicionTexto+=Offset(dragAmount.x, dragAmount.y)
+                    }
+                }
         )
 
         // Botón en la parte superior izquierda
